@@ -135,76 +135,10 @@ namespace Security.Controllers
         {
             return View();
         }
+ 
+ 
 
-        // POST: AddFiles/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NotrustedName,Size,Content")] AddFile addFile)
-        {
-            if (ModelState.IsValid)
-            {
-                addFile.Id = Guid.NewGuid();
-                addFile.TimeStamp = DateTime.Now;
-                _context.Add(addFile);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(addFile);
-        }
-
-        // GET: AddFiles/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var addFile = await _context.AddFile.FindAsync(id);
-            if (addFile == null)
-            {
-                return NotFound();
-            }
-            return View(addFile);
-        }
-
-        // POST: AddFiles/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,NotrustedName,TimeStamp,Size,Content")] AddFile addFile)
-        {
-            if (id != addFile.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(addFile);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AddFileExists(addFile.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(addFile);
-        }
-
+       
         // GET: AddFiles/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
