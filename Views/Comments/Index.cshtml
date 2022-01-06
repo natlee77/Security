@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Security.Models.Comment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1> Comment</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model)
+        {
+            <tr>
+                <td>
+                  @*  @Html.DisplayFor(modelItem => comment.TimeStamp)*@
+                    <div class="text-muted">@comment.TimeStamp</div>
+                </td>
+                <td>
+                 @*   @Html.DisplayFor(modelItem => comment.Content)*@
+                    <div class="content">@Html.Raw(comment.Content)</div>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@comment.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@comment.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@comment.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*
+        @foreach (var comment in Model)
+        {
+            <div class="comment">
+               <div class="content">@HttpUtility.Html.Decode(comment.Content)</div>
+
+
+        </div>
+
+    }*@
