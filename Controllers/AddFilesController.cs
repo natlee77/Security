@@ -19,7 +19,7 @@ namespace Security.Controllers
     {
         private readonly SecurityDbContext _context;
         private readonly long fileSizeLimit = 10 * 1048576;
-        private readonly string[] permittedExtensions = { ".jpg",".png", ".jpeg" };
+        private readonly string[] permittedExtensions = { ".jpg",".png" };
 
         public AddFilesController(SecurityDbContext context)
         {
@@ -72,7 +72,7 @@ namespace Security.Controllers
 
                     addFile.Content =
                             await FileHelpers.ProcessStreamedFile(section, theContentDisposition,
-                                ModelState, permittedExtensions, fileSizeLimit);
+                                ModelState, permittedExtensions, fileSizeLimit); //  verifiera  ändelser -- permittedExtensions
                     if (addFile.Content.Length == 0)
                     {
                         return RedirectToAction("Index", "AddFiles");

@@ -27,11 +27,11 @@
         {
             <tr>
                 <td>
-                  @*  @Html.DisplayFor(modelItem => comment.TimeStamp)*@
+               
                     <div class="text-muted">@comment.TimeStamp</div>
                 </td>
                 <td>
-                 @*   @Html.DisplayFor(modelItem => comment.Content)*@
+              
                     <div class="content">@Html.Raw(comment.Content)</div>
                 </td>
                 <td>
@@ -43,13 +43,5 @@
         }
     </tbody>
 </table>
-@*
-        @foreach (var comment in Model)
-        {
-            <div class="comment">
-               <div class="content">@HttpUtility.Html.Decode(comment.Content)</div>
-
-
-        </div>
-
-    }*@
+ 
+      
