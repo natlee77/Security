@@ -6,6 +6,25 @@
 
 <h1>Index</h1>
 
+
+<form id="uploadForm" asp-action="UploadFile" asp-controller="AddFiles" method="post"     
+      enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;">
+    <dl>
+        <dt>
+            <label for="file">File</label>
+        </dt>
+        <dd>
+            <input id="file" type="file" name="file" />
+        </dd>
+    </dl>
+
+    <input class="btn btn-primary" type="submit" value="Upload" />
+    <div style="margin-top:15px">
+        <output form="uploadForm" name="result"></output>
+    </div>
+</form>
+
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -24,24 +43,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.Content)
             </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NotrustedName)
             </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.TimeStamp)
-        </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.Content)
+                @Html.DisplayFor(modelItem => item.TimeStamp)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Size)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+
 
             <td>
                 @*  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
@@ -49,6 +71,6 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

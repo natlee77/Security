@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Net.Http.Headers;
 
 namespace Security.Utilities
-{
+{   // from microsoft.net
     public static class FileHelpers
     {
         // If you require a check on specific characters in the IsValidFileExtensionAndSignature
@@ -26,9 +26,16 @@ namespace Security.Utilities
             { ".jpg", new List<byte[]>
                 {
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
-                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE2 },
+                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE3 },
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE8 },
+                }
+            },
+              { ".png", new List<byte[]>
+                {
+                  //png signature format -- 89 50 4E 47 0D 0A 1A 0A
+                    new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }
+                   
                 }
             }
         };
@@ -130,9 +137,10 @@ namespace Security.Utilities
         }
 
 
-        //som headers i HTTP ReQUEST , - info om filen storlek, name 
+        
+        //dela ut stor file i section
         public static async Task<byte[]> ProcessStreamedFile(
-            MultipartSection section, ContentDispositionHeaderValue contentDisposition,
+            MultipartSection section, ContentDispositionHeaderValue contentDisposition,  //som headers i HTTP ReQUEST , - info om filen storlek, name 
             ModelStateDictionary modelState, string[] permittedExtensions, long sizeLimit)
         {
             try
